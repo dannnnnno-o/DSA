@@ -1,0 +1,45 @@
+1. Problem
+    Develop a simple program that illustrates array and stack.
+
+2. Solution
+    Develop an informative program that contains a pre-defined data structures (array and stack) and make them interactive.
+
+3. Algorithm
+    3.1. Array
+        A. View
+            I. Select an index to view
+            II. Display the element at that index
+            III. Return to array menu
+        B.
+            I. Select an index to edit
+            II. Input the new value
+            III. Update the array with the new value.
+            IV. Return to array menu
+        C.
+            I. Input a string to add
+            II. Add string to array 
+            III. Return to array menu
+        D. 
+            I. Select an index to delete
+            II. Remove the element at the selected index
+            III. Return to array menu
+    3.2 Stack
+        A. Validate Stack
+            I. Display the counters, current stack, and current head
+            II. Press enter to remove the current head
+            III. Update the counters
+            IV. Validate by checking the counters
+            V. Display conclusion
+            VI. Return to stack menu
+        B. Replace Stack
+            I. Enter the replacement string for the new stack
+            II. Clear stack and push the replacement string
+            III. Return to stack menu 
+    3.3 Exit
+        I. Display "Exit" banner
+        II. Quit Program
+4. Flowchart
+
+5. Pseudocode
+
+6. Output
