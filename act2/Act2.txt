@@ -1,0 +1,16 @@
+1. Problem
+    Implement a single function of a POS (Point of Sale) System.
+2. Solution
+    Develop a program that demonstrates an actual scenario wherein a Point of Sale System would come in handy.
+3. Algorithm
+    3.1 Welcome the user
+    3.2 Display all available products/items for sale and their details
+    3.3 Prompt the user on what would they like to buy
+    3.4 Proceed with the confirmation
+    3.5 Go back to 3.2
+    
+4. Flow Chart
+
+5. Pseudocode
+
+6. Output  
