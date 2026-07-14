@@ -4,12 +4,13 @@ public class Item{
     int id;
     String name;
     int price;
-    int stock = 99;
+    int stock;
 
-    public Item(int id, String name, int price){
+    public Item(int id, String name, int price, int stock){
         this.id = id;
         this.name = name;
         this.price = price;
+        this.stock = stock;
     }
 
     int GetPrice(int amount){
@@ -35,7 +36,10 @@ public class Item{
         else if(name_length == name_limit){
             System.out.println(this.name);
         }
-        System.out.println(this.price);
+        System.out.print(this.price);
+        System.out.print("          ");
+        System.out.println(this.stock);
+
         // System.out.println(this.name + "  " + this.price + "  " + this.stock);
     }
 
