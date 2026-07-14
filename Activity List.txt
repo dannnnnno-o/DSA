@@ -1,0 +1,13 @@
+activity #1
+    POS na may inventory
+    pipili ng isang program/function 
+
+activity #2
+    Computation ng net pay
+    (hanap payslip)
+
+activity #3 
+    Record keeping (201 file)
+    
+
+    connected #2 -> #3
