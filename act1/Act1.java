@@ -141,6 +141,7 @@ public class Act1 {
             case 1:
                 int valid = 0;
                 String conclusion;
+                StringBuilder lifo_output = new StringBuilder();
                 for(int i = stack.size() - 1; i >= 0; i--){
                     sb.setLength(0);
                     for(char c : stack){
@@ -160,11 +161,14 @@ public class Act1 {
                     System.out.println("Qoute Count: " + quote_count);
 
                     System.out.println("\nCurrent Stack: " + sb);
+                    System.out.println("LIFO output: " + lifo_output);
                     System.out.println("Current Head: " + stack.get(i));
 
                     System.out.print("\nPress enter to continue.");
                     scanner.nextLine();
-
+                    if(i > 0){
+                        lifo_output.append(stack.get(i - 1));
+                    }
                     stack.remove(stack.size() - 1);
                 }
                 if(parenthesis_count == 0 || quote_count == 0){
