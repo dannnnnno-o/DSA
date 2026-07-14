@@ -23,6 +23,7 @@
             I. Select an index to delete
             II. Remove the element at the selected index
             III. Return to array menu
+        E. Return to main menu
     3.2 Stack
         A. Validate Stack
             I. Display the counters, current stack, and current head
@@ -35,6 +36,7 @@
             I. Enter the replacement string for the new stack
             II. Clear stack and push the replacement string
             III. Return to stack menu 
+        C. Return to main menu
     3.3 Exit
         I. Display "Exit" banner
         II. Quit Program

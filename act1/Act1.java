@@ -15,9 +15,9 @@ public class Act1 {
     
     public static void main(String[] args){
         // System.out.println("Hello World");
+        // Task: Simple program that shows illustrates array, linked lists, stack, queue, etc.
 
         misc.Title("Data Structures and Algorithms");
-        // Task: Simple program that shows illustrates array, linked lists, stack, queue, etc.
 
         String[] sample_array = new String[]{"First String", "Second String", "Third String", "Fourth String"};
         String line = "printf(\"Hello World\");";
@@ -30,8 +30,8 @@ public class Act1 {
             case 2 -> Stacks(line);
             case 3 -> misc.Title("Exit"); 
             default -> main(new String[]{});
-        }
-        System.out.println("Thank you for using our program.");
+        }//
+        System.out.println("Thank you for using our program!");
         System.exit(0);
     }
 
@@ -208,6 +208,6 @@ public class Act1 {
                 break;
         }
 
-        Stacks(line);
+    Stacks(line);
     }
 }
