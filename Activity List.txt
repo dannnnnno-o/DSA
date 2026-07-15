@@ -1,12 +1,16 @@
 activity #1
+    program that illustrates the data structures: array, linked list, stack, queue
+    choose 2 out of 4 only
+
+activity #2
     POS na may inventory
     pipili ng isang program/function 
 
-activity #2
+activity #3
     Computation ng net pay
     (hanap payslip)
 
-activity #3 
+activity #4 
     Record keeping (201 file)
     
 
