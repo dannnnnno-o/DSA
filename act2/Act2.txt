@@ -12,5 +12,5 @@
 4. Flow Chart
 
 5. Pseudocode
-
+    
 6. Output  

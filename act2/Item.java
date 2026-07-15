@@ -1,10 +1,10 @@
 package act2;
 
 public class Item{
-    int id;
-    String name;
-    int price;
-    int stock;
+    public int id;
+    public String name;
+    public int price;
+    public int stock;
 
     public Item(int id, String name, int price, int stock){
         this.id = id;
@@ -21,22 +21,41 @@ public class Item{
         this.stock = this.stock - amount;
     }
 
-    void Format(){
-        int name_space = 20;
-        int name_limit = 15;
-        int name_length = this.name.length();
+    public void Format(){
+        int column1_space = 35;
 
-        System.out.print("[" + this.id + "] ");
-        if(name_length < name_limit){
-            System.out.print(this.name);
-            for(int i = name_length; i < name_limit; i++){
+        int id_space = 5; // [xx]_ 
+        int name_space = 25;
+        int price_space = 5;
+        
+        String id = "[" + this.id + "] ";
+        String name = this.name;
+        int name_length = this.name.length();
+        int id_length = id.length();
+
+        if(this.id < 10){
+            id = "[" + this.id +"]";
+            name = "  " + this.name;
+        }
+        
+        if((id_length + name_length) < column1_space){
+            System.out.print(id + name);
+            for(int i = name_length; i < name_space; i++){
                 System.out.print(" ");
             }
         }
-        else if(name_length == name_limit){
+        else if(name_length == name_space){
             System.out.println(this.name);
         }
-        System.out.print(this.price);
+        if(this.price < 10){
+            System.out.print(this.price + "  ");
+        }
+        else if(this.price < 100 && this.price >= 10){
+            System.out.print(this.price + " ");
+        }
+        else{
+            System.out.print(this.price +"");
+        }
         System.out.print("          ");
         System.out.println(this.stock);
 
