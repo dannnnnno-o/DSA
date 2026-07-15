@@ -39,11 +39,8 @@ public class Misc {
     }
     
     public String OptionRange(Item[] items){
-        int item_count = 0;
+        int item_count = items.length;
         String range;
-        for(Item item : items){
-            item_count++;
-        }
         if(item_count == 0){
             range = "[0]";
         }

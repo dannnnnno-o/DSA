@@ -167,7 +167,7 @@ public class Act1 {
                     System.out.print("\nPress enter to continue.");
                     scanner.nextLine();
                     if(i > 0){
-                        lifo_output.append(stack.get(i - 1));
+                        lifo_output.append(stack.get(i));
                     }
                     stack.remove(stack.size() - 1);
                 }

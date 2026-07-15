@@ -24,9 +24,7 @@ public class Item{
     public void Format(){
         int column1_space = 35;
 
-        int id_space = 5; // [xx]_ 
         int name_space = 25;
-        int price_space = 5;
         
         String id = "[" + this.id + "] ";
         String name = this.name;
