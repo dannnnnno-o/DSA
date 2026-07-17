@@ -1,0 +1,48 @@
+objectives:
+1. to comprehend the general approach per activity in this subject
+
+2. to understand what classes are and how they interact with each other
+
+3. to understand how objects work
+
+4. to understand how objects are implemented
+
+topics are:
+    data types
+        primitive data types
+            char
+            int 
+            bool
+
+        non-primitive 
+            string 
+            arrays
+            classes 
+
+    methods 
+        in-class (same file)
+        off-class (different file but same package)
+        off-package (different file, different package)
+
+    loops 
+        for loops:
+            standard for(int i = 0; i < x; i++)
+            enhanced foreach (int num : nums)
+        while loops
+            break syntax
+            continue syntax 
+            error-handling design
+
+    input behavior
+        scanner.next()
+        scanner.nextLine()
+        scanner.nextInt()
+        
+    try-catch 
+        e as event
+        InputMismatchException
+
+    packages;
+        classes 
+        methods 
+        objects
