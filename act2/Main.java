@@ -12,32 +12,32 @@ public class Main {
     static int total_price = 0;
     static boolean is_stock_enough = false;
     static boolean confirm_transaction = false;
-     
-    public static void main(String[] args){
-        // System.out.println("Hello World");
-        Item piattos = new Item(1,"Clover Chips", 10, 56);
-        Item chippy_red = new Item(2, "Chippy Red", 10, 67);
-        Item chippy_blue = new Item(3, "Chippy Blue", 10, 67);
-        Item bread_pan = new Item(4, "Bread Pan", 9, 80);
-        Item royal_mismo = new Item(5, "Royal Mismo", 20, 35);
-        Item coke_mismo = new Item(6, "Coke Mismo", 20, 25);
-        Item sprite_mismo = new Item(7, "Sprite Mismo", 20, 30);
-        Item coke_l = new Item(8, "Coke 1.5L", 75, 18);
-        Item pancit_canton = new Item(9, "Pancit Canton Original", 17, 24);
-        Item nissin_ramen = new Item(10, "Nissin's Ramen Beef", 16, 28);
-        Item lucky_me = new Item(11, "Lucky Me Chicken", 12, 25);
-        Item creamy_white = new Item(12, "Creamy White", 15, 99);
-        Item kopiko_brown = new Item(13, "Kopiko Brown", 15, 99);
-        Item great_taste_choco = new Item(14, "Great Taste Choco", 17, 99);
-        Item marlboro_red = new Item(15, "Marlboro Red", 10, 200);
-        Item gin = new Item(16, "Gin", 65, 40);
-        Item red_horse = new Item(17, "Red Horse 1L", 128, 28);
-        Item tanduay = new Item(18, "Tanduay", 137, 20);
+    
+    static Item piattos = new Item(1,"Clover Chips", 10, 56);
+    static Item chippy_red = new Item(2, "Chippy Red", 10, 67);
+    static Item chippy_blue = new Item(3, "Chippy Blue", 10, 67);
+    static Item bread_pan = new Item(4, "Bread Pan", 9, 80);
+    static Item royal_mismo = new Item(5, "Royal Mismo", 20, 35);
+    static Item coke_mismo = new Item(6, "Coke Mismo", 20, 25);
+    static Item sprite_mismo = new Item(7, "Sprite Mismo", 20, 30);
+    static Item coke_l = new Item(8, "Coke 1.5L", 75, 18);
+    static Item pancit_canton = new Item(9, "Pancit Canton Original", 17, 24);
+    static Item nissin_ramen = new Item(10, "Nissin's Ramen Beef", 16, 28);
+    static Item lucky_me = new Item(11, "Lucky Me Chicken", 12, 25);
+    static Item creamy_white = new Item(12, "Creamy White", 15, 99);
+    static Item kopiko_brown = new Item(13, "Kopiko Brown", 15, 99);
+    static Item great_taste_choco = new Item(14, "Great Taste Choco", 17, 99);
+    static Item marlboro_red = new Item(15, "Marlboro Red", 10, 200);
+    static Item gin = new Item(16, "Gin", 65, 40);
+    static Item red_horse = new Item(17, "Red Horse 1L", 128, 28);
+    static Item tanduay = new Item(18, "Tanduay", 137, 20);
 
-        Item[] items = new Item[]{piattos, chippy_red, chippy_blue, bread_pan, royal_mismo, coke_mismo, sprite_mismo, coke_l, pancit_canton, nissin_ramen, lucky_me, creamy_white, kopiko_brown, great_taste_choco, marlboro_red, gin, red_horse, tanduay
+    static Item[] items = new Item[]{piattos, chippy_red, chippy_blue, bread_pan, royal_mismo, coke_mismo, sprite_mismo, coke_l, pancit_canton, nissin_ramen, lucky_me, creamy_white, kopiko_brown, great_taste_choco, marlboro_red, gin, red_horse, tanduay
         };
 
-        Item selected_item = new Item(0, null, 0, 0);
+    static Item selected_item = new Item(0, null, 0, 0);
+    public static void main(String[] args){
+        // System.out.println("Hello World");
         while (true) {
         misc.Title("Erlinda Store");
         System.out.println("No.  Name                     Price        Stocks");
@@ -72,7 +72,6 @@ public class Main {
             continue;
         }
 
-
         misc.Title("Confirm Transaction");
         System.out.printf("Item: [%s]", selected_item.name);
         System.out.printf("\nAmount: [%s]", amount);
@@ -92,8 +91,8 @@ public class Main {
     
         selected_item.stock = selected_item.stock - amount;
         selected_item = new Item(0, null, 0, 0);
+        
         continue;
         }
-
     }
 }
