@@ -1,0 +1,21 @@
+1. Problem
+    simulate how net pays work and show the salary deductions
+
+2. Solution
+    develop a program that follows a basic work-pay flow and show the calculations behind net pay
+
+3. Algorithm
+    3.1 Display hiring info
+    3.2 Prompt for employment
+    3.3 Welcome employee
+    3.4 Work for the day 
+    3.5 Skip day/week/month
+    3.6 Display day/week/month summary
+    3.7 Calculate salary
+    3.8 Display net pay
+
+4. Flow Chart
+
+5. Pseudocode
+
+6. Output

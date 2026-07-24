@@ -148,5 +148,62 @@ public class Controller {
 
         }
     }
+    
+    //act 3
 
+    public boolean ConfirmEmployment(float basic_pay, float day_rate, float hour_rate){
+        String option = null;
+        while(true){
+            if(error){
+                misc.Title("ABC Tech Solutions");
+                System.out.printf("Welcome to ABC Tech Solutions!\n\nWe are currently hiring new employees\nwith a basic salary of [%.0fPHP] monthly.\n\nEmployees are to work from monday to friday for 9am - 5pm\nwith a basic pay of [%.0fPHP] per day and [%.0fPHP] per hour.\n", basic_pay, day_rate, hour_rate);
+        
+            System.out.println(error_message);
+
+            System.out.print("\nWould you like to work in our company? [y/n]: ");      
+            error = false;
+        }
+
+        option = scanner.nextLine();
+        if(option.equalsIgnoreCase("y")){
+            return true;
+        }
+        else if(option.equalsIgnoreCase("n")){
+            return false;
+        }
+        else{
+            error = true;
+            error_message = "\nInvalid input.";
+            continue;
+        }
+    }
+    }
+
+    public String Skip(int day, String day_message){
+        String option = null;
+        while(true){
+            if(error){
+            System.out.printf("Day; %d\n\n", day);
+            System.out.println(day_message);
+            System.out.println(error_message);            
+            System.out.print("\nSkip [day]/[week]/[month]: ");
+            error = false;
+            }
+            option = scanner.nextLine();
+            if(option.equalsIgnoreCase("day")){
+                return "day";
+            }
+            else if(option.equalsIgnoreCase("week")){
+                return "week";
+            }
+            else if(option.equalsIgnoreCase("month")){
+                return "month";
+            }
+            else{
+                error = true;
+                error_message = "Please only select from [day]/[week]/[month].";
+                continue;
+            }
+        }
+    }
 }

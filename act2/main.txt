@@ -1,0 +1,56 @@
+while (true) {
+misc.Title("Erlinda Store");
+System.out.println("No.  Name                     Price        Stocks");
+for (Item item : items) {
+    item.Format();
+}
+System.out.println("\n" + misc.OptionRange(items) + " Select Item   [0] Exit" );
+System.out.print("What would you like to buy?: ");
+
+selected_item = controller.SelectItem(items);
+
+if(selected_item.id == 0){
+    misc.Title("Exit");
+    System.out.println("Thank you for using our program!");
+    System.exit(0);
+}
+
+misc.Title("Erlinda Store");
+System.out.printf("You've selected: [%s]\n", selected_item.name);
+System.out.println("It costs [" + selected_item.price + "PHP] each and we have a stock of [" + selected_item.stock + "] items.");
+amount_option = misc.OptionRange(1, selected_item.stock);
+System.out.printf("\n%s Amount   [0] Back", amount_option);
+System.out.printf("\nHow much would you like to buy?: " );
+
+amount = controller.GetAmount(selected_item);
+if(amount == -1){
+    selected_item = new Item(0,null, 0,0);
+    continue;
+}
+total_price = controller.GetTotal(selected_item, amount);
+if(total_price == 0){
+    continue;
+}
+
+misc.Title("Confirm Transaction");
+System.out.printf("Item: [%s]", selected_item.name);
+System.out.printf("\nAmount: [%s]", amount);
+System.out.printf("\nTotal Price: [%sPHP]", total_price);
+
+System.out.print("\n\nConfirm transaction? [y/n]: ");
+
+confirm_transaction = controller.ConfirmTransaction(selected_item, amount, total_price);
+if(!confirm_transaction){
+    misc.Title("Confirm Transaction");
+    controller.WaitEnter("\nTransaction Cancelled.\n\nPress Enter to return.");
+    continue;
+}
+
+misc.Title("Confirm Transaction");
+controller.WaitEnter("Thank you for your purchase!\n\nPress Enter to return.");
+
+selected_item.stock = selected_item.stock - amount;
+selected_item = new Item(0, null, 0, 0);
+
+continue;
+}
