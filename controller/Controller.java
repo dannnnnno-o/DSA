@@ -2,14 +2,16 @@ package controller;
 
 import java.util.Scanner;
 import java.util.InputMismatchException;
+
 import act2.*;
+import act3.*;
 import misc.*;
 
 public class Controller {
-    Scanner scanner = new Scanner(System.in);
+    public Scanner scanner = new Scanner(System.in);
     Misc misc = new Misc();
-    int option = 0;
-    boolean error = false;
+    static int option = 0;
+    static boolean error = false;
     String error_message;
 
     public Item SelectItem(Item[] items){
@@ -32,7 +34,7 @@ public class Controller {
         }
         catch(InputMismatchException e){
             scanner.next();
-            error_message = "Invalid input.";
+            error_message = "Error: Invalid input.";
             error = true;
             continue;
         }
@@ -109,6 +111,11 @@ public class Controller {
         return total;
     }
 
+    public void WaitEnter(){
+        System.out.println("\nPress enter to continue;");
+        scanner.nextLine();
+    }
+
     public void WaitEnter(String message){
         System.out.println(message);
         scanner.nextLine();
@@ -151,12 +158,12 @@ public class Controller {
     
     //act 3
 
-    public boolean ConfirmEmployment(float basic_pay, float day_rate, float hour_rate){
+    public boolean ConfirmEmployment(Work work){
         String option = null;
         while(true){
             if(error){
                 misc.Title("ABC Tech Solutions");
-                System.out.printf("Welcome to ABC Tech Solutions!\n\nWe are currently hiring new employees\nwith a basic salary of [%.0fPHP] monthly.\n\nEmployees are to work from monday to friday for 9am - 5pm\nwith a basic pay of [%.0fPHP] per day and [%.0fPHP] per hour.\n", basic_pay, day_rate, hour_rate);
+                System.out.printf("Welcome to ABC Tech Solutions!\n\nWe are currently hiring an entry-level back-end developer\nwith a basic salary of [%.0fPHP] per month.\n\nWork starts from monday to friday for 9am - 5pm with a\nbasic pay of [%.0fPHP] per day and [%.0fPHP] per hour.\n", work.basic_pay, work.hour_rate * 8f, work.hour_rate);
         
             System.out.println(error_message);
 
@@ -173,20 +180,23 @@ public class Controller {
         }
         else{
             error = true;
-            error_message = "\nInvalid input.";
+            error_message = "\nError: Invalid input.";
             continue;
         }
     }
     }
-
-    public String Skip(int day, String day_message){
+ 
+/*    public String Skip(Work work){
         String option = null;
         while(true){
             if(error){
-            System.out.printf("Day; %d\n\n", day);
-            System.out.println(day_message);
+            misc.Title("ABC Tech Solutions");
+            work.ShowDay();
+            System.out.println(work.DayMessage());
+            work.PeekEndDay();
+            work.FormatCounter();
             System.out.println(error_message);            
-            System.out.print("\nSkip [day]/[week]/[month]: ");
+            System.out.print("\nWhat would you like to skip?: ");
             error = false;
             }
             option = scanner.nextLine();
@@ -201,9 +211,123 @@ public class Controller {
             }
             else{
                 error = true;
-                error_message = "Please only select from [day]/[week]/[month].";
+                error_message = "Error: Please only select from [day]/[week]/[month].";
                 continue;
             }
+        }
+    } */
+
+    public boolean ConfirmName(String name){
+        String option = null;
+        while (true) {
+            misc.Title("ABC Tech Solutions");
+
+            if(error){
+                misc.Title("ABC Tech Solutions");
+                System.out.println("Error: Invalid Input\n");
+                error = false;
+            }
+            System.out.print("Is the name [" + name + "] correct? [y/n]: ");
+            option = scanner.nextLine();
+            if(option.equalsIgnoreCase("y")){
+                return true;
+            }
+            else if(option.equalsIgnoreCase("n")){
+                return false;
+            }
+            else{
+                error = true;
+                continue;
+            }
+        }
+        
+    }
+
+    public double ValidateHourRate(){
+        double hour_rate;
+        while(true){
+            misc.Title("Payslip Calculator");
+            if(error){
+                System.out.printf("\nError: %s\n\n", error_message);
+                error = false;
+            }
+            System.out.print("Input your hour rate: ");
+            try{
+                hour_rate = scanner.nextDouble();
+            }
+            catch(InputMismatchException e){
+                scanner.next();
+                error_message = "Invalid Input.";
+                error = true;
+                continue;
+            }
+
+            if(hour_rate == 0){
+                error_message = "Hour Rate cannot be 0"; 
+                error = true;
+                continue;
+            }
+            else if(hour_rate < 0){
+                error_message = "Hour Rate cannot be negative "; 
+                error = true;
+                continue;
+            }
+
+            else if(hour_rate == Double.POSITIVE_INFINITY){
+                error_message = "Hour Rate cannot be that big";
+                error = true;
+                continue;
+            }
+            break;
+        }
+        return hour_rate;
+    }
+
+    public long ValidateHours(double hour_rate){
+        long hours;
+        while(true){
+            if(error){
+                misc.Title("Payslip Calculator");
+                System.out.println("Input your hour rate: " + hour_rate);
+                System.out.printf("\nError: %s\n", error_message);                
+                error = false;
+            }
+            System.out.print("Input your hours of regular work: ");
+            try{
+                hours = scanner.nextLong();
+            }
+            catch(InputMismatchException e){
+                scanner.next();
+                error_message = "Input is out of range or not a whole number";
+                error = true;
+                continue;
+            }
+
+
+        return hours;
+        }
+    }
+    public long ValidateHours(double hour_rate, long reg_hours){
+        long hours;
+        while(true){
+            if(error){
+                misc.Title("Payslip Calculator");
+                System.out.println("Input your hour rate: " + hour_rate);
+                System.out.println("Input your hours of regular work: " + reg_hours);
+                System.out.println("\nError: Invalid Input\n");                
+                error = false;
+            }
+            System.out.print("Input your hours of overtime work: ");
+            try{
+                hours = scanner.nextLong();
+            }
+            catch(InputMismatchException e){
+                scanner.next();
+                error = true;
+                continue;
+            }
+            if(hours <= 0 )
+        return hours;
         }
     }
 }
