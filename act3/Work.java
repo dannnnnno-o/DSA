@@ -2,16 +2,20 @@
 package act3;
 // import java.util.Map;
 
-public class Work{
-    public double basic_pay;
-    public double hour_rate;
-    public double ot_rate = hour_rate * 1.25f;
-    public long reg_hours;
-    public long ot_hours;
-    public long weeks = 1;
-    public long total_hours;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 
-    public long day = 1;
+public class Work{
+    public BigDecimal basic_pay;
+    public BigDecimal hour_rate;
+    public BigDecimal ot_rate = new BigDecimal("1.25");
+    public BigDecimal ot_pay;
+    public BigInteger reg_hours;
+    public BigInteger ot_hours;
+    public BigInteger total_hours;
+    
+    // public long weeks = 1;
+    // public long day = 1;
 
 /*    public void PeekEndDay(){
 
@@ -125,16 +129,16 @@ public class Work{
     }
 */
 
-    public void SetRate(double rate){
+    public void SetRate(BigDecimal rate){
         this.hour_rate = rate;
     }
 
-    public void SetRegularHours(long hours){
+    public void SetRegularHours(BigInteger hours){
         this.reg_hours = hours;        
     }
-    public void SetOvertimeHours(long hours){
+    public void SetOvertimeHours(BigInteger hours){
         this.ot_hours = hours;        
-        this.ot_rate = hour_rate * 1.25f;
+        this.ot_pay = hour_rate.multiply(ot_rate);
     }
 
 

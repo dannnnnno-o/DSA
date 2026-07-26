@@ -30,9 +30,9 @@ public class Main{
             work.SetRegularHours(controller.ValidateHours(work.hour_rate));
             work.SetOvertimeHours(controller.ValidateHours(work.hour_rate, work.reg_hours));
             
-            // payslip = new Payslip(work);
-            // payslip.SetGrossPay();
-            // System.out.println(payslip.gross_pay);
+            payslip = new Payslip(work);
+            payslip.SetGrossPay();
+            System.out.println(payslip.gross_pay);
             break;
 
         }

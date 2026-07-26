@@ -1,9 +1,16 @@
 package act3;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
+
 public class Payslip {
-    double gross_pay = 0f;
-    double deductions = 0f; //SSS Philhealth pagibig
-    double net_pay = 0f;
+    BigDecimal zero = BigDecimal.ZERO;
+    BigDecimal gross_pay = zero;
+    BigDecimal deductions = zero; //SSS Philhealth pagibig
+    BigDecimal net_pay = zero;
+    BigDecimal sss_rate = new BigDecimal(0.05);
+    BigDecimal philhealth_rate = new BigDecimal(0.025);
+    BigDecimal hdmf_rate = new BigDecimal(0.02);
 
     Work work = new Work();    
 
@@ -12,18 +19,25 @@ public class Payslip {
     }
 
     void SetGrossPay(){
-        this.gross_pay = (work.reg_hours * work.hour_rate) + (work.ot_hours * work.ot_rate);
+        // this.gross_pay = (work.reg_hours * work.hour_rate) + (work.ot_hours * work.ot_rate);
+
+        this.gross_pay = new BigDecimal(work.reg_hours)
+                            .multiply(work.hour_rate)
+                            .add(
+                              new BigDecimal(work.ot_hours)
+                              .multiply(work.ot_pay)  
+                            );
     }
 
     void SetDeductions(){
-        double sss = this.gross_pay * .05f ;
-        double philhealth = this.gross_pay * 0.025f;
-        double hdmf = this.gross_pay * .02f;
-        this.deductions = sss + philhealth + hdmf;
+        BigDecimal sss = gross_pay.multiply(sss_rate);// this.gross_pay * .05f ; 
+        BigDecimal philhealth = gross_pay.multiply(philhealth_rate);// this.gross_pay * 0.025f;
+        BigDecimal hdmf = gross_pay.multiply(hdmf_rate); // this.gross_pay * .02f;
+        this.deductions.add(sss).add(philhealth).add(hdmf);// sss + philhealth + hdmf;
     }
 
     void SetNetPay(){
-        this.net_pay = this.gross_pay - this.deductions;       
+        this.net_pay = gross_pay.subtract(deductions);       
     }
 
     void Show(){

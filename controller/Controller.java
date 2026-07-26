@@ -2,12 +2,17 @@ package controller;
 
 import java.util.Scanner;
 import java.util.InputMismatchException;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 
 import act2.*;
 import act3.*;
 import misc.*;
 
 public class Controller {
+    BigDecimal bd_zero = BigDecimal.ZERO;
+    BigInteger bi_zero = BigInteger.ZERO;
+    
     public Scanner scanner = new Scanner(System.in);
     Misc misc = new Misc();
     static int option = 0;
@@ -163,7 +168,7 @@ public class Controller {
         while(true){
             if(error){
                 misc.Title("ABC Tech Solutions");
-                System.out.printf("Welcome to ABC Tech Solutions!\n\nWe are currently hiring an entry-level back-end developer\nwith a basic salary of [%.0fPHP] per month.\n\nWork starts from monday to friday for 9am - 5pm with a\nbasic pay of [%.0fPHP] per day and [%.0fPHP] per hour.\n", work.basic_pay, work.hour_rate * 8f, work.hour_rate);
+                System.out.printf("Welcome to ABC Tech Solutions!\n\nWe are currently hiring an entry-level back-end developer\nwith a basic salary of [%sPHP] per month.\n\nWork starts from monday to friday for 9am - 5pm with a\nbasic pay of [%.0fPHP] per day and [%.0fPHP] per hour.\n", work.basic_pay,work.hour_rate.toString(), work.hour_rate);
         
             System.out.println(error_message);
 
@@ -243,8 +248,8 @@ public class Controller {
         
     }
 
-    public double ValidateHourRate(){
-        double hour_rate;
+    public BigDecimal ValidateHourRate(){
+        BigDecimal hour_rate;
         while(true){
             misc.Title("Payslip Calculator");
             if(error){
@@ -253,7 +258,7 @@ public class Controller {
             }
             System.out.print("Input your hour rate: ");
             try{
-                hour_rate = scanner.nextDouble();
+                hour_rate = scanner.nextBigDecimal();
             }
             catch(InputMismatchException e){
                 scanner.next();
@@ -262,29 +267,29 @@ public class Controller {
                 continue;
             }
 
-            if(hour_rate == 0){
+            if(hour_rate.compareTo(bd_zero) == 0){
                 error_message = "Hour Rate cannot be 0"; 
                 error = true;
                 continue;
             }
-            else if(hour_rate < 0){
+            else if(hour_rate.compareTo(bd_zero) == -1){
                 error_message = "Hour Rate cannot be negative "; 
                 error = true;
                 continue;
             }
 
-            else if(hour_rate == Double.POSITIVE_INFINITY){
-                error_message = "Hour Rate cannot be that big";
-                error = true;
-                continue;
-            }
+            // else if(hour_rate == Double.POSITIVE_INFINITY){
+            //     error_message = "Hour Rate cannot be that big";
+            //     error = true;
+            //     continue;
+            // }
             break;
         }
         return hour_rate;
     }
 
-    public long ValidateHours(double hour_rate){
-        long hours;
+    public BigInteger ValidateHours(BigDecimal hour_rate){
+        BigInteger hours;
         while(true){
             if(error){
                 misc.Title("Payslip Calculator");
@@ -294,39 +299,60 @@ public class Controller {
             }
             System.out.print("Input your hours of regular work: ");
             try{
-                hours = scanner.nextLong();
+                hours = scanner.nextBigInteger();
             }
             catch(InputMismatchException e){
                 scanner.next();
-                error_message = "Input is out of range or not a whole number";
+                error_message = "Invalid Input.";
                 error = true;
                 continue;
             }
 
-
+            if(hours.compareTo(bi_zero) == 0){
+                error_message = "Hours cannot be zero";
+                error = true;
+                continue;
+            }
+            else if(hours.compareTo(bi_zero) == -1){
+                error_message = "Hours cannot be negative";
+                error = true;
+                continue;
+            }
         return hours;
         }
     }
-    public long ValidateHours(double hour_rate, long reg_hours){
-        long hours;
+    public BigInteger ValidateHours(BigDecimal hour_rate, BigInteger reg_hours){
+        BigInteger hours;
         while(true){
             if(error){
                 misc.Title("Payslip Calculator");
                 System.out.println("Input your hour rate: " + hour_rate);
                 System.out.println("Input your hours of regular work: " + reg_hours);
-                System.out.println("\nError: Invalid Input\n");                
+                System.out.printf("\nError: %s\n", error_message);                
                 error = false;
             }
             System.out.print("Input your hours of overtime work: ");
             try{
-                hours = scanner.nextLong();
+                hours = scanner.nextBigInteger();
             }
             catch(InputMismatchException e){
                 scanner.next();
+                error_message = "Invalid Input.";
                 error = true;
                 continue;
             }
-            if(hours <= 0 )
+
+            if(hours.compareTo(bi_zero) == 0){
+                error_message = "Overtime hours cannot be zero";
+                error = true;
+                continue;
+            }
+            if(hours.compareTo(bi_zero) == -1){
+                error_message = "Overtime hours cannot be negative";
+                error = true;
+                continue;
+            }
+            
         return hours;
         }
     }
