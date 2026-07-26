@@ -1,6 +1,5 @@
 package act3;
 public class Calculation{
-    @SuppressWarnings("unused")
         // System.out.println("Hello world");
 
         float basic_pay = 0f; //monthly
