@@ -26,10 +26,15 @@ public class Main{
         System.out.println("Name: " + name);
         while(true){
             Title();
-            work.SetRate(controller.ValidateHourRate());
-            work.SetRegularHours(controller.ValidateHours(work.hour_rate));
-            work.SetOvertimeHours(controller.ValidateHours(work.hour_rate, work.reg_hours));
-            
+            work.hour_rate = controller.ValidateHourRate();
+
+            work.reg_hours = controller.ValidateHours(work, "regular");
+            work.reg_night = controller.ValidateHours(work, "regular night");
+            work.ot_hours = controller.ValidateHours(work, "overtime");
+            work.ot_night = controller.ValidateHours(work, "overtime night");
+
+
+
             payslip = new Payslip(work);
             payslip.SetGrossPay();
             System.out.println(payslip.gross_pay);

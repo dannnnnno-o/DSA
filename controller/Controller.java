@@ -288,72 +288,138 @@ public class Controller {
         return hour_rate;
     }
 
-    public BigInteger ValidateHours(BigDecimal hour_rate){
-        BigInteger hours;
+    public BigInteger ValidateHours(Work work, String mode){
+        BigInteger hours = BigInteger.ZERO;
         while(true){
-            if(error){
-                misc.Title("Payslip Calculator");
-                System.out.println("Input your hour rate: " + hour_rate);
-                System.out.printf("\nError: %s\n", error_message);                
-                error = false;
-            }
-            System.out.print("Input your hours of regular work: ");
-            try{
-                hours = scanner.nextBigInteger();
-            }
-            catch(InputMismatchException e){
+            if(mode.equals("regular")){
+                if(error){
+                    misc.Title("Payslip Calculator");
+                    System.out.println("Input your hour rate: " + work.hour_rate);
+                    System.out.printf("\nError: %s\n\n", error_message);                
+                    error = false;
+                }
+                System.out.print("Input your hours of regular work: ");
+                try{
+                    hours = scanner.nextBigInteger();
+                }
+                catch(InputMismatchException e){
                 scanner.next();
                 error_message = "Invalid Input.";
                 error = true;
                 continue;
-            }
-
-            if(hours.compareTo(bi_zero) == 0){
-                error_message = "Hours cannot be zero";
-                error = true;
-                continue;
-            }
-            else if(hours.compareTo(bi_zero) == -1){
-                error_message = "Hours cannot be negative";
-                error = true;
-                continue;
-            }
-        return hours;
-        }
-    }
-    public BigInteger ValidateHours(BigDecimal hour_rate, BigInteger reg_hours){
-        BigInteger hours;
-        while(true){
-            if(error){
-                misc.Title("Payslip Calculator");
-                System.out.println("Input your hour rate: " + hour_rate);
-                System.out.println("Input your hours of regular work: " + reg_hours);
-                System.out.printf("\nError: %s\n", error_message);                
-                error = false;
-            }
-            System.out.print("Input your hours of overtime work: ");
-            try{
-                hours = scanner.nextBigInteger();
-            }
-            catch(InputMismatchException e){
-                scanner.next();
-                error_message = "Invalid Input.";
-                error = true;
-                continue;
-            }
-
-            if(hours.compareTo(bi_zero) == 0){
-                error_message = "Overtime hours cannot be zero";
-                error = true;
-                continue;
-            }
-            if(hours.compareTo(bi_zero) == -1){
-                error_message = "Overtime hours cannot be negative";
-                error = true;
-                continue;
+                }
+                if(hours.compareTo(bi_zero) == 0){
+                    error_message = "Hours cannot be zero";
+                    error = true;
+                    continue;
+                }
+                else if(hours.compareTo(bi_zero) == -1){
+                    error_message = "Hours cannot be negative";
+                    error = true;
+                    continue;
+                }
+                break;
             }
             
-        return hours;
+            else if(mode.equals("regular night")){
+                if(error){
+                    misc.Title("Payslip Calculator");
+                    System.out.println("Input your hour rate: " + work.hour_rate);
+                    System.out.println("Input your hours of regular work: " + work.reg_hours);
+                    System.out.printf("\nError: %s\n\n", error_message);
+                    error = false;
+                }
+
+                System.out.print("How many of your regular hours are considered night differential?: ");
+                try{
+                    hours = scanner.nextBigInteger();
+                }
+                catch(InputMismatchException e){
+                    scanner.next();
+                    error = true;
+                    error_message = "Invalid Input.";
+                    continue;
+                }
+
+                if(hours.compareTo(bi_zero) == -1){
+                    error = true;
+                    error_message = "Night Differential cannot be negative.";
+                    continue;
+                }
+
+                else if(hours.compareTo(work.reg_hours) == 1){
+                    error = true;
+                    error_message = "Night Differential can't be greater than your regular hours";
+                    continue;
+                }
+                break;
+            }
+
+            else if(mode.equals("overtime")){
+                if(error){
+                    misc.Title("Payslip Calculator");
+                    System.out.println("Input your hour rate: " + work.hour_rate);
+                    System.out.println("Input your hours of regular work: " + work.reg_hours);
+                    System.out.println("How many of your regular hours are considered night differential?: " + work.reg_night);
+                    System.out.printf("\nError: %s\n\n", error_message);                
+                    error = false;
+                }
+                System.out.print("Input your hours of overtime work: ");
+                try{
+                    hours = scanner.nextBigInteger();
+                }
+                catch(InputMismatchException e){
+                    scanner.next();
+                    error_message = "Invalid Input.";
+                    error = true;
+                    continue;
+                }
+                if(hours.compareTo(bi_zero) == -1){
+                    error_message = "Overtime hours cannot be negative";
+                    error = true;
+                    continue;
+                }
+                break;
+            }
+        
+            else if(mode.equals("overtime night")){
+                if(error){
+                    misc.Title("Payslip Calculator");
+                    System.out.println("Input your hour rate: " + work.hour_rate);
+                    System.out.println("Input your hours of regular work: " + work.reg_hours);
+                    System.out.println("How many of your regular hours are considered night differential?: " + work.reg_night);
+                    System.out.println("Input your hours of overtime work: " + work.ot_hours);
+                    System.out.printf("\nError: %s\n\n", error_message);
+                    error = false;
+                }
+                System.out.print("How many of your overtime hours are considered night differential?: ");
+                try{
+                    hours = scanner.nextBigInteger();
+                }
+                catch(InputMismatchException e){
+                    scanner.next();
+                    error = true;
+                    error_message = "Invalid input.";
+                    continue;
+                }
+
+                if(hours.compareTo(bi_zero) == -1){
+                    error = true;
+                    error_message = "Overtime Night Differential cannot be negative.";
+                    continue;
+                }
+
+                else if(hours.compareTo(work.ot_hours) == 1){
+                    error = true;
+                    error_message = "Overtime Night Differential cannot be greater than your Overtime Hours.";
+                    continue;
+                }  
+                break;
+            }
         }
+
+
+        
+        return hours;
     }
 }

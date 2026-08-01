@@ -17,14 +17,18 @@ public class Payslip {
         this.work = work;
     }
 
-    void SetGrossPay(){
-        // this.gross_pay = (work.reg_hours * work.hour_rate) + (work.ot_hours * work.ot_rate);
+    void SetOTPay(){
+        work.ot_pay = work.hour_rate.multiply(new BigDecimal("1.25"));
+    }
 
+    void SetGrossPay(){
+        SetOTPay();
+        // this.gross_pay = (work.reg_hours * work.hour_rate) + (work.ot_hours * work.ot_rate);
         this.gross_pay = new BigDecimal(work.reg_hours)
-                            .multiply(work.hour_rate)
+                            .multiply(work.hour_rate) // (reg_hours * hour_rate)
                             .add(
                               new BigDecimal(work.ot_hours)
-                              .multiply(work.ot_pay)  
+                              .multiply(work.ot_pay)  // (reg_hours * hour_rate) + (ot_hours * ot_pay);
                             );
     }
 

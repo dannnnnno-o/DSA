@@ -10,8 +10,12 @@ public class Work{
     public BigDecimal hour_rate;
     public BigDecimal ot_rate = new BigDecimal("1.25");
     public BigDecimal ot_pay;
+
+
     public BigInteger reg_hours;
+    public BigInteger reg_night;
     public BigInteger ot_hours;
+    public BigInteger ot_night;
     public BigInteger total_hours;
     
     // public long weeks = 1;
@@ -129,13 +133,7 @@ public class Work{
     }
 */
 
-    public void SetRate(BigDecimal rate){
-        this.hour_rate = rate;
-    }
 
-    public void SetRegularHours(BigInteger hours){
-        this.reg_hours = hours;        
-    }
     public void SetOvertimeHours(BigInteger hours){
         this.ot_hours = hours;        
         this.ot_pay = hour_rate.multiply(ot_rate);
