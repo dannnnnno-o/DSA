@@ -7,9 +7,9 @@ public class Payslip {
     BigDecimal gross_pay = zero;
     BigDecimal deductions = zero; //SSS Philhealth pagibig
     BigDecimal net_pay = zero;
-    BigDecimal sss_rate = new BigDecimal(0.05);
-    BigDecimal philhealth_rate = new BigDecimal(0.025);
-    BigDecimal hdmf_rate = new BigDecimal(0.02);
+    BigDecimal sss_rate = new BigDecimal("0.05");
+    BigDecimal philhealth_rate = new BigDecimal("0.025");
+    BigDecimal hdmf_rate = new BigDecimal("0.02");
 
     Work work = new Work();    
 
@@ -44,7 +44,7 @@ public class Payslip {
         BigDecimal sss = gross_pay.multiply(sss_rate);// this.gross_pay * .05f ; 
         BigDecimal philhealth = gross_pay.multiply(philhealth_rate);// this.gross_pay * 0.025f;
         BigDecimal hdmf = gross_pay.multiply(hdmf_rate); // this.gross_pay * .02f;
-        this.deductions.add(sss).add(philhealth).add(hdmf);// sss + philhealth + hdmf;
+        this.deductions = this.deductions.add(sss).add(philhealth).add(hdmf);// sss + philhealth + hdmf;
     }
 
     void SetNetPay(){
