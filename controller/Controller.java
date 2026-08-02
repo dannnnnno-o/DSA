@@ -3,7 +3,6 @@ package controller;
 import java.util.Scanner;
 import java.util.InputMismatchException;
 import java.math.BigDecimal;
-import java.math.BigInteger;
 
 import act2.*;
 import act3.*;
@@ -11,7 +10,6 @@ import misc.*;
 
 public class Controller {
     BigDecimal bd_zero = BigDecimal.ZERO;
-    BigInteger bi_zero = BigInteger.ZERO;
     
     public Scanner scanner = new Scanner(System.in);
     Misc misc = new Misc();
@@ -288,8 +286,8 @@ public class Controller {
         return hour_rate;
     }
 
-    public BigInteger ValidateHours(Work work, String mode){
-        BigInteger hours = BigInteger.ZERO;
+    public BigDecimal ValidateHours(Work work, String mode){
+        BigDecimal hours = bd_zero;
         while(true){
             if(mode.equals("regular")){
                 if(error){
@@ -300,7 +298,7 @@ public class Controller {
                 }
                 System.out.print("Input your hours of regular work: ");
                 try{
-                    hours = scanner.nextBigInteger();
+                    hours = scanner.nextBigDecimal();
                 }
                 catch(InputMismatchException e){
                 scanner.next();
@@ -308,12 +306,12 @@ public class Controller {
                 error = true;
                 continue;
                 }
-                if(hours.compareTo(bi_zero) == 0){
+                if(hours.compareTo(bd_zero) == 0){
                     error_message = "Hours cannot be zero";
                     error = true;
                     continue;
                 }
-                else if(hours.compareTo(bi_zero) == -1){
+                else if(hours.compareTo(bd_zero) == -1){
                     error_message = "Hours cannot be negative";
                     error = true;
                     continue;
@@ -332,7 +330,7 @@ public class Controller {
 
                 System.out.print("How many of your regular hours are considered night differential?: ");
                 try{
-                    hours = scanner.nextBigInteger();
+                    hours = scanner.nextBigDecimal();
                 }
                 catch(InputMismatchException e){
                     scanner.next();
@@ -341,7 +339,7 @@ public class Controller {
                     continue;
                 }
 
-                if(hours.compareTo(bi_zero) == -1){
+                if(hours.compareTo(bd_zero) == -1){
                     error = true;
                     error_message = "Night Differential cannot be negative.";
                     continue;
@@ -366,7 +364,7 @@ public class Controller {
                 }
                 System.out.print("Input your hours of overtime work: ");
                 try{
-                    hours = scanner.nextBigInteger();
+                    hours = scanner.nextBigDecimal();
                 }
                 catch(InputMismatchException e){
                     scanner.next();
@@ -374,7 +372,7 @@ public class Controller {
                     error = true;
                     continue;
                 }
-                if(hours.compareTo(bi_zero) == -1){
+                if(hours.compareTo(bd_zero) == -1){
                     error_message = "Overtime hours cannot be negative";
                     error = true;
                     continue;
@@ -394,7 +392,7 @@ public class Controller {
                 }
                 System.out.print("How many of your overtime hours are considered night differential?: ");
                 try{
-                    hours = scanner.nextBigInteger();
+                    hours = scanner.nextBigDecimal();
                 }
                 catch(InputMismatchException e){
                     scanner.next();
@@ -403,7 +401,7 @@ public class Controller {
                     continue;
                 }
 
-                if(hours.compareTo(bi_zero) == -1){
+                if(hours.compareTo(bd_zero) == -1){
                     error = true;
                     error_message = "Overtime Night Differential cannot be negative.";
                     continue;
@@ -417,7 +415,6 @@ public class Controller {
                 break;
             }
         }
-
 
         
         return hours;

@@ -17,19 +17,27 @@ public class Payslip {
         this.work = work;
     }
 
-    void SetOTPay(){
-        work.ot_pay = work.hour_rate.multiply(new BigDecimal("1.25"));
+    void SetRegularPay(){
+        work.basic_pay = work.hour_rate.multiply(work.reg_hours);
+        work.night_rate = work.hour_rate.multiply(work.night_rate);
+        work.night_pay = work.night_rate.multiply(work.reg_night);
+        
+        work.regular_pay = work.basic_pay.add(work.night_pay);
+    }
+    
+    void SetOvertimePay(){
+        work.ot_rate = work.hour_rate.multiply(work.ot_rate);
+        work.reg_ot_pay = work.ot_rate.multiply(work.ot_hours.subtract(work.ot_night));
+        work.ot_night_rate = work.hour_rate.multiply(work.ot_night_rate);
+        work.ot_night_pay = work.ot_night_rate.multiply(work.ot_night);
+
+        work.ot_pay = work.reg_ot_pay.add(work.ot_night_pay);
     }
 
     void SetGrossPay(){
-        SetOTPay();
-        // this.gross_pay = (work.reg_hours * work.hour_rate) + (work.ot_hours * work.ot_rate);
-        this.gross_pay = new BigDecimal(work.reg_hours)
-                            .multiply(work.hour_rate) // (reg_hours * hour_rate)
-                            .add(
-                              new BigDecimal(work.ot_hours)
-                              .multiply(work.ot_pay)  // (reg_hours * hour_rate) + (ot_hours * ot_pay);
-                            );
+        SetRegularPay();
+        SetOvertimePay();
+        this.gross_pay = work.regular_pay.add(work.ot_pay);
     }
 
     void SetDeductions(){

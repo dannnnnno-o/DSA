@@ -3,20 +3,27 @@ package act3;
 // import java.util.Map;
 
 import java.math.BigDecimal;
-import java.math.BigInteger;
 
 public class Work{
+    
     public BigDecimal basic_pay;
-    public BigDecimal hour_rate;
-    public BigDecimal ot_rate = new BigDecimal("1.25");
+    public BigDecimal night_pay;
+    public BigDecimal regular_pay;
+
+    public BigDecimal reg_ot_pay;
+    public BigDecimal ot_night_pay;
     public BigDecimal ot_pay;
 
+    public BigDecimal hour_rate;
+    public BigDecimal ot_rate = new BigDecimal("1.25");
+    public BigDecimal night_rate = new BigDecimal("0.1");
+    public BigDecimal ot_night_rate = new BigDecimal("1.35"); // .1 + .25
 
-    public BigInteger reg_hours;
-    public BigInteger reg_night;
-    public BigInteger ot_hours;
-    public BigInteger ot_night;
-    public BigInteger total_hours;
+    public BigDecimal reg_hours;
+    public BigDecimal reg_night;
+    public BigDecimal ot_hours;
+    public BigDecimal ot_night;
+    public BigDecimal total_hours;
     
     // public long weeks = 1;
     // public long day = 1;
@@ -134,7 +141,7 @@ public class Work{
 */
 
 
-    public void SetOvertimeHours(BigInteger hours){
+    public void SetOvertimeHours(BigDecimal hours){
         this.ot_hours = hours;        
         this.ot_pay = hour_rate.multiply(ot_rate);
     }

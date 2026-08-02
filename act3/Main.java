@@ -30,14 +30,13 @@ public class Main{
 
             work.reg_hours = controller.ValidateHours(work, "regular");
             work.reg_night = controller.ValidateHours(work, "regular night");
-            work.ot_hours = controller.ValidateHours(work, "overtime");
-            work.ot_night = controller.ValidateHours(work, "overtime night");
-
-
+            work.ot_hours = controller.ValidateHours(work, "overtime"); // (125 * 1.25) * this
+            work.ot_night = controller.ValidateHours(work, "overtime night"); // (125 * 1.35) * this
 
             payslip = new Payslip(work);
             payslip.SetGrossPay();
-            System.out.println(payslip.gross_pay);
+
+            System.out.println("Gross pay: " + payslip.gross_pay);
             break;
 
         }
