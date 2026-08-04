@@ -1,6 +1,7 @@
 package act3;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 public class Payslip {
     BigDecimal zero = BigDecimal.ZERO;
@@ -21,18 +22,15 @@ public class Payslip {
     }
 
     void SetRegularPay(){
-        work.basic_pay = work.hour_rate.multiply(work.reg_hours);
-        work.night_rate = work.hour_rate.multiply(work.night_rate);
-        work.night_pay = work.night_rate.multiply(work.reg_night);
-        
+        work.basic_pay = work.hour_rate.multiply(work.reg_hours.subtract(work.reg_night));
+        work.night_pay = work.hour_rate.multiply(BigDecimal.ONE.add(work.night_rate)).multiply(work.reg_night);
+
         work.regular_pay = work.basic_pay.add(work.night_pay);
     }
     
     void SetOvertimePay(){
-        work.ot_rate = work.hour_rate.multiply(work.ot_rate);
-        work.reg_ot_pay = work.ot_rate.multiply(work.ot_hours.subtract(work.ot_night));
-        work.ot_night_rate = work.hour_rate.multiply(work.ot_night_rate);
-        work.ot_night_pay = work.ot_night_rate.multiply(work.ot_night);
+        work.reg_ot_pay = work.hour_rate.multiply(work.ot_rate).multiply(work.ot_hours.subtract(work.ot_night));
+        work.ot_night_pay = work.hour_rate.multiply(work.ot_night_rate).multiply(work.ot_night);
 
         work.ot_pay = work.reg_ot_pay.add(work.ot_night_pay);
     }
@@ -85,9 +83,9 @@ __________________________________________________
         EmptyLine(); // row 3
         SetColumns(); // row 4
 
-        DataRow("Regular", work.reg_hours, work.regular_pay);
+        DataRow("Regular", work.reg_hours.subtract(work.reg_night), work.basic_pay);
         DataRow("Night Shift", work.reg_night, work.night_pay);
-        DataRow("Overtime", work.ot_hours, work.ot_pay);
+        DataRow("Overtime", work.ot_hours.subtract(work.ot_night), work.reg_ot_pay);
         DataRow("OT Night Shift", work.ot_night, work.ot_night_pay);
         EmptyLine();
 
@@ -105,8 +103,9 @@ __________________________________________________
         Border("bottom");
     }
     String FormatNum(BigDecimal value){
-        String s = value.stripTrailingZeros().toPlainString();
-        if(s.length() > 6){
+        String s = value.setScale(2, RoundingMode.HALF_UP).stripTrailingZeros().toPlainString();
+        int digits = s.replace("-", "").replace(".", "").length();
+        if(digits > 6){
             return s.substring(0, 6) + "...";
         }
         return s;

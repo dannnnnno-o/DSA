@@ -22,8 +22,8 @@ public class PayslipTest{
 
         w2.reg_hours = new BigDecimal("75.5");
         w2.reg_night = new BigDecimal("10.5");
-        w2.ot_hours = new BigDecimal("0");
-        w2.ot_night = new BigDecimal("0");
+        w2.ot_hours = new BigDecimal("5");
+        w2.ot_night = new BigDecimal("3");
 
         Payslip p2 = new Payslip(w2);
         p2.SetGrossPay();
@@ -43,8 +43,8 @@ public class PayslipTest{
         p3.SetDeductions();
         p3.SetNetPay();
 
-        p1.Show(name);
+        // p1.Show(name);
         p2.Show(name);
-        p3.Show(name);
+        // p3.Show(name);
     }
 }
