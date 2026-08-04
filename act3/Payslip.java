@@ -89,24 +89,28 @@ __________________________________________________
         DataRow("OT Night Shift", work.ot_night, work.ot_night_pay);
         EmptyLine();
 
-        RightRow("Gross Pay:", FormatNum(gross_pay));
+        RightRow("Gross Pay:", FormatNum(gross_pay, 9));
         EmptyLine();
 
         Border("middle");
         RightRow("Less:", "Amount");
+        EmptyLine();
         RightRow("SSS", FormatNum(sss));
         RightRow("PhilHealth", FormatNum(philhealth));
         RightRow("HDMF", FormatNum(hdmf));
         EmptyLine();
 
-        RightRow("NET PAY:", FormatNum(net_pay));
+        RightRow("NET PAY:", FormatNum(net_pay, 9));
         Border("bottom");
     }
     String FormatNum(BigDecimal value){
+        return FormatNum(value, 6);
+    }
+    String FormatNum(BigDecimal value, int max){
         String s = value.setScale(2, RoundingMode.HALF_UP).stripTrailingZeros().toPlainString();
         int digits = s.replace("-", "").replace(".", "").length();
-        if(digits > 6){
-            return s.substring(0, 6) + "...";
+        if(digits > max){
+            return s.substring(0, max) + "...";
         }
         return s;
     }
