@@ -10,6 +10,7 @@ import misc.*;
 
 public class Controller {
     BigDecimal bd_zero = BigDecimal.ZERO;
+    BigDecimal max_input = new BigDecimal("1000000");
     
     public Scanner scanner = new Scanner(System.in);
     Misc misc = new Misc();
@@ -282,6 +283,11 @@ public class Controller {
                 error = true;
                 continue;
             }
+            else if(hour_rate.compareTo(max_input) == 1){
+                error_message = "Hour rate can't be too big";
+                error = true;
+                continue;
+            }
 
             // else if(hour_rate == Double.POSITIVE_INFINITY){
             //     error_message = "Hour Rate cannot be that big";
@@ -323,6 +329,11 @@ public class Controller {
                     error = true;
                     continue;
                 }
+                else if(hours.compareTo(max_input) == 1){
+                    error_message = "Hours can't be too big";
+                    error = true;
+                    continue;
+                }
                 break;
             }
             
@@ -357,6 +368,11 @@ public class Controller {
                     error_message = "Night Differential can't be greater than your regular hours";
                     continue;
                 }
+                else if(hours.compareTo(max_input) == 1){
+                    error_message = "Hours can't be too big";
+                    error = true;
+                    continue;
+                }
                 break;
             }
 
@@ -381,6 +397,11 @@ public class Controller {
                 }
                 if(hours.compareTo(bd_zero) == -1){
                     error_message = "Overtime hours cannot be negative";
+                    error = true;
+                    continue;
+                }
+                else if(hours.compareTo(max_input) == 1){
+                    error_message = "Hours can't be too big";
                     error = true;
                     continue;
                 }
@@ -419,6 +440,11 @@ public class Controller {
                     error_message = "Overtime Night Differential cannot be greater than your Overtime Hours.";
                     continue;
                 }  
+                else if(hours.compareTo(max_input) == 1){
+                    error_message = "Hours can't be too big";
+                    error = true;
+                    continue;
+                }
                 break;
             }
         }
