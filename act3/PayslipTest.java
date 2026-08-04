@@ -5,10 +5,10 @@ public class PayslipTest{
     public static void main(String[] args){
         Work w1 = new Work();
         String name = "Daniel Baladad";
-        w1.hour_rate = new BigDecimal("100000000000000000");
+        w1.hour_rate = new BigDecimal("10000000000000");
 
         w1.reg_hours = new BigDecimal("100000000000");
-        w1.reg_night = new BigDecimal("10000000000000");
+        w1.reg_night = new BigDecimal("10000000000");
         w1.ot_hours = new BigDecimal("1000000000000");
         w1.ot_night = new BigDecimal("10");
 
@@ -18,12 +18,12 @@ public class PayslipTest{
         p1.SetNetPay();
 
         Work w2 = new Work();
-        w2.hour_rate = new BigDecimal("86.88");
+        w2.hour_rate = new BigDecimal("125");
 
-        w2.reg_hours = new BigDecimal("75.5");
-        w2.reg_night = new BigDecimal("10.5");
-        w2.ot_hours = new BigDecimal("5");
-        w2.ot_night = new BigDecimal("3");
+        w2.reg_hours = new BigDecimal("160");
+        w2.reg_night = new BigDecimal("10");
+        w2.ot_hours = new BigDecimal("3");
+        w2.ot_night = new BigDecimal("1");
 
         Payslip p2 = new Payslip(w2);
         p2.SetGrossPay();
@@ -43,8 +43,8 @@ public class PayslipTest{
         p3.SetDeductions();
         p3.SetNetPay();
 
-        // p1.Show(name);
+        p1.Show(name);
         p2.Show(name);
-        // p3.Show(name);
+        p3.Show(name);
     }
 }

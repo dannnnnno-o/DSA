@@ -17,7 +17,8 @@ public class Main{
         while(true){
             Title();
             System.out.print("What's your name?: ");
-            name = controller.scanner.nextLine();
+            String n = controller.scanner.nextLine();
+            name = n.strip();
             if(!controller.ConfirmName(name)){
                 continue;
             }

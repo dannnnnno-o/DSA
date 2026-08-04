@@ -222,6 +222,13 @@ public class Controller {
 
     public boolean ConfirmName(String name){
         String option = null;
+
+        if(name.isEmpty()){
+            System.out.println("Name can't be empty.");
+            WaitEnter();
+            return false;
+        }
+        
         while (true) {
             misc.Title("ABC Tech Solutions");
 
