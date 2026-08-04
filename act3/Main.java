@@ -38,9 +38,10 @@ public class Main{
             payslip.SetDeductions();
             payslip.SetNetPay();
             
-            System.out.println("Gross pay: " + payslip.gross_pay);
-            System.out.println("Deductions: " + payslip.deductions);
-            System.out.println("Net Pay: " + payslip.net_pay);
+            // System.out.println("Gross pay: " + payslip.gross_pay);
+            // System.out.println("Deductions: " + payslip.deductions);
+            // System.out.println("Net Pay: " + payslip.net_pay);
+            payslip.Show(name);
             break;
 
         }
