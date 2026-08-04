@@ -7,6 +7,8 @@ objectives:
 
 4. to understand how objects are implemented
 
+5. to understand what methods are and how they're implemented   
+
 topics are:
     data types
         primitive data types
@@ -34,9 +36,9 @@ topics are:
             error-handling design
 
     input behavior
-        scanner.next()
-        scanner.nextLine()
-        scanner.nextInt()
+        scanner.next() // takes in input until it reaches " "
+        scanner.nextLine() // takes in input until it reaches \n
+        scanner.nextInt() // takes in input number until it reaches " "
         
     try-catch 
         e as event
