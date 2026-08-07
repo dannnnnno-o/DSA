@@ -53,6 +53,11 @@ public class Controller2 {
         if(error == 2){
             System.out.printf("Error: Username can't be empty.\n\n", username);
         }
+
+        if(error == 3 && username != null){
+            System.out.printf("Error: An account with a username of [%s] does not exist.\n\n", username);
+        }
+        
         System.out.print("Enter username: ");
         return scanner.nextLine();
     }
